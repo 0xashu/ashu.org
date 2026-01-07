@@ -54,7 +54,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <main className="px-6 md:px-12 lg:px-16 max-w-4xl mx-auto">
+      <main className="px-6 md:px-12 lg:px-16 max-w-6xl mx-auto">
         <section id="working" className="mb-20">
           <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">
             Working
