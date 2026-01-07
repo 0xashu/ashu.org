@@ -31,6 +31,23 @@ export interface ReadingItem {
   description?: string;
 }
 
+export interface PhotographItem {
+  title: string;
+  image: string;
+  description?: string;
+  url?: string;
+  tags?: string[];
+}
+
+export interface MovieItem {
+  title: string;
+  director: string;
+  cover: string;
+  description?: string;
+  url?: string;
+  tags?: string[];
+}
+
 export interface SocialLink {
   label: string;
   url: string;
@@ -44,5 +61,7 @@ export interface SiteContent {
   working: WorkingItem[];
   ideas: IdeaItem[];
   reading: ReadingItem[];
+  photographs: PhotographItem[];
+  movies: MovieItem[];
   social: SocialLink[];
 }

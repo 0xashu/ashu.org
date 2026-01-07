@@ -1,5 +1,7 @@
 import type { SiteContent } from "./types";
 import { readingList } from "./reading/data";
+import { photographList } from "./photographs/data";
+import { movieList } from "./movies/data";
 
 export const siteContent: SiteContent = {
   name: "Ashu",
@@ -9,7 +11,9 @@ export const siteContent: SiteContent = {
   nav: [
     { label: "Working", href: "#working" },
     { label: "Ideas", href: "#ideas" },
+    { label: "Movies", href: "/movies" },
     { label: "Reading", href: "/reading" },
+    { label: "Photographs", href: "/photographs" },
   ],
 
   working: [
@@ -61,6 +65,13 @@ export const siteContent: SiteContent = {
       type: "hackathon",
     },
     {
+      name: "CarbonVote",
+      description: "Vote for or against the Hard Fork with your Ether.",
+      url: "https://vitalik.eth.limo/general/2017/12/17/voting.html",
+      tags: ["Ethereum", "Hard Fork", "Voting"],
+      type: "hackathon",
+    },
+    {
       name: "Nervermore",
       description: "A social credit system on the blockchain.",
       url: "https://github.com/janx/nevermore",
@@ -80,6 +91,10 @@ export const siteContent: SiteContent = {
   ],
 
   reading: readingList,
+
+  photographs: photographList,
+
+  movies: movieList,
 
   social: [
     { label: "Email", url: "hi@ashu.org" },
