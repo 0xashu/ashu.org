@@ -20,15 +20,15 @@ export default function Reading() {
           >
             Back
           </Link>
-          <p className="text-sm leading-relaxed max-w-lg">
-            Reading sharpens my craft and broadens my understanding of the
-            world. Many of my best ideas come from applying tangential topics,
-            such as typography or philosophy, to software design.
-          </p>
         </header>
 
         <div className="flex gap-12 lg:gap-16">
           <div className="shrink-0 w-64 lg:w-80">
+            <p className="text-sm leading-relaxed mb-6">
+              Reading sharpens my craft and broadens my understanding of the
+              world. Many of my best ideas come from applying tangential topics,
+              such as typography or philosophy, to software design.
+            </p>
             <nav>
               <ul className="space-y-1 font-mono text-sm uppercase tracking-wide">
                 {reading.map((book, index) => {
@@ -68,7 +68,7 @@ export default function Reading() {
                   <div
                     key={book.title}
                     className={cn(
-                      "relative aspect-2/3 rounded overflow-hidden transition-[filter,box-shadow] duration-500 ease-out cursor-default border-6 shadow-sm hover:shadow-lg will-change-[filter]",
+                      "relative aspect-2/3 rounded-xs overflow-hidden transition-[filter,box-shadow] duration-500 ease-out cursor-default border-6 shadow-sm hover:shadow-lg will-change-[filter]",
                       hasHover
                         ? isHovered
                           ? "grayscale-0 brightness-100"
