@@ -54,6 +54,13 @@ export const siteContent: SiteContent = {
       type: "hackathon",
     },
     {
+      name: "Time4Value",
+      description: "Payment via the bonding curve and yield farming.",
+      url: "https://v2ex.com/t/1061427",
+      tags: ["Payment", "Bonding Curve", "Yield Farming"],
+      type: "hackathon",
+    },
+    {
       name: "Nervermore",
       description: "Social Credit System on Blockchain.",
       url: "https://github.com/janx/nevermore",
