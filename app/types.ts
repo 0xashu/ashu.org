@@ -15,11 +15,12 @@ export interface WorkingItem {
 export interface IdeaItem {
   name: string;
   description: string;
-  url: string;
   type: "hackathon" | "todo";
+  url?: string;
   status?: string;
-  date?: string;
+  period?: string;
   tags?: string[];
+  completed?: boolean;
 }
 
 export interface ReadingItem {

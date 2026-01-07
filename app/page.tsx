@@ -76,12 +76,27 @@ export default function Home() {
             Ideas
           </h2>
           <TreeList
-            items={ideas.map((idea) => ({
-              title: idea.name,
-              description: idea.description,
-              url: idea.url,
-              status: idea.type,
-            }))}
+            items={[
+              ...ideas
+                .filter((idea) => idea.type === "hackathon")
+                .map((idea) => ({
+                  title: idea.name,
+                  description: idea.description,
+                  url: idea.url ?? "",
+                  tags: idea.tags,
+                })),
+              {
+                title: "TODO",
+                description: "Things I want to do",
+                todos: ideas
+                  .filter((idea) => idea.type === "todo")
+                  .map((idea) => ({
+                    title: idea.name,
+                    description: idea.description,
+                    completed: idea.completed ?? false,
+                  })),
+              },
+            ]}
           />
         </section>
       </main>

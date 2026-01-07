@@ -1,12 +1,14 @@
 import Link from "next/link";
+import { TodoList, type TodoItem } from "./TodoList";
 
 type TreeItem = {
   title: React.ReactNode;
   description?: string;
   status?: string;
   period?: string;
-  url: string;
+  url?: string;
   tags?: string[];
+  todos?: TodoItem[];
 };
 
 export function TreeList({ items }: { items: TreeItem[] }) {
@@ -28,13 +30,13 @@ export function TreeList({ items }: { items: TreeItem[] }) {
             </div>
             <div className="flex-1 pb-8">
               <Link
-                href={item.url}
+                href={item.url ?? "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-6 group cursor-pointer"
               >
                 <div className="flex items-baseline gap-1.5">
-                  <span>{item.title}</span>
+                  <span className="text-lg">{item.title}</span>
                   <span className="text-zinc-400 text-xs font-mono leading-none">
                     {item.status}
                   </span>
@@ -44,6 +46,11 @@ export function TreeList({ items }: { items: TreeItem[] }) {
                 </div>
                 <p className="text-zinc-600">{item.description}</p>
               </Link>
+
+              {item.todos && item.todos.length > 0 && (
+                <TodoList items={item.todos} />
+              )}
+
               {item.tags && item.tags.length > 0 && (
                 <p className="text-zinc-400 text-sm mt-2 space-x-2">
                   {item.tags.map((tag) => (
