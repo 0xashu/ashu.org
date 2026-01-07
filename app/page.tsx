@@ -3,7 +3,7 @@ import Link from "next/link";
 import { TreeList } from "./components/TreeList";
 
 export default function Home() {
-  const { name, title, intro, nav, working, projects, social } = siteContent;
+  const { name, title, intro, nav, working, ideas, social } = siteContent;
 
   return (
     <div className="min-h-screen">
@@ -15,16 +15,22 @@ export default function Home() {
             </h1>
             <p className="text-lg text-zinc-400 leading-relaxed">{intro}</p>
             <ul className="flex gap-6 mt-6 font-mono">
-              {social.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.url}
-                    className="text-zinc-400 hover:text-black transition-colors"
-                  >
-                    [{link.label}]
-                  </a>
-                </li>
-              ))}
+              {social.map((link) => {
+                const href =
+                  link.label === "Email" ? `mailto:${link.url}` : link.url;
+                return (
+                  <li key={link.label}>
+                    <Link
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-zinc-400 hover:text-black transition-colors"
+                    >
+                      [{link.label}]
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
@@ -38,7 +44,7 @@ export default function Home() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-2xl font-semibold text-zinc-400 hover:text-black transition-colors"
+                  className="text-2xl uppercase font-semibold text-zinc-400 hover:text-black transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -60,19 +66,21 @@ export default function Home() {
               description: job.description,
               period: job.period,
               url: job.url,
+              tags: job.tags,
             }))}
           />
         </section>
 
-        <section id="projects" className="mb-20">
+        <section id="ideas" className="mb-20">
           <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">
-            Projects
+            Ideas
           </h2>
           <TreeList
-            items={projects.map((project) => ({
-              title: project.name,
-              description: project.description,
-              url: project.url,
+            items={ideas.map((idea) => ({
+              title: idea.name,
+              description: idea.description,
+              url: idea.url,
+              status: idea.type,
             }))}
           />
         </section>

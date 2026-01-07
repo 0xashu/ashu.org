@@ -6,11 +6,12 @@ type TreeItem = {
   status?: string;
   period?: string;
   url: string;
+  tags?: string[];
 };
 
 export function TreeList({ items }: { items: TreeItem[] }) {
   return (
-    <ul className="font-mono text-base">
+    <ul className="text-base">
       {items.map((item, i) => {
         const isLast = i === items.length - 1;
 
@@ -25,23 +26,32 @@ export function TreeList({ items }: { items: TreeItem[] }) {
                 <div className="absolute left-0 top-0 h-3 w-px bg-zinc-300" />
               )}
             </div>
-            <div className="flex-1 pb-4">
+            <div className="flex-1 pb-8">
               <Link
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-6 flex items-baseline gap-2 group cursor-pointer"
+                className="h-6 group cursor-pointer"
               >
-                <span className="group-hover:underline cursor-pointer">
-                  {item.title}
-                </span>
-
-                {item.status && (
-                  <span className="text-zinc-400">{item.status}</span>
-                )}
+                <div className="flex items-baseline gap-1.5">
+                  <span>{item.title}</span>
+                  <span className="text-zinc-400 text-xs font-mono leading-none">
+                    {item.status}
+                  </span>
+                  <sup className="font-sans text-xs font-semibold text-zinc-600 leading-none opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
+                    ↗
+                  </sup>
+                </div>
+                <p className="text-zinc-600">{item.description}</p>
               </Link>
-              {item.description && (
-                <p className="text-zinc-400 mt-2">{item.description}</p>
+              {item.tags && item.tags.length > 0 && (
+                <p className="text-zinc-400 text-sm mt-2 space-x-2">
+                  {item.tags.map((tag) => (
+                    <span key={tag} className="inline-block">
+                      #{tag}
+                    </span>
+                  ))}
+                </p>
               )}
               {item.period && (
                 <p className="text-zinc-400 text-sm mt-2">{item.period}</p>

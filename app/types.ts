@@ -9,12 +9,25 @@ export interface WorkingItem {
   period: string;
   status?: string;
   url: string;
+  tags?: string[];
 }
 
-export interface ProjectItem {
+export interface IdeaItem {
   name: string;
   description: string;
   url: string;
+  type: "hackathon" | "todo";
+  status?: string;
+  date?: string;
+  tags?: string[];
+}
+
+export interface ReadingItem {
+  title: string;
+  author: string;
+  cover?: string;
+  url?: string;
+  description?: string;
 }
 
 export interface SocialLink {
@@ -28,6 +41,7 @@ export interface SiteContent {
   intro: string;
   nav: NavItem[];
   working: WorkingItem[];
-  projects: ProjectItem[];
+  ideas: IdeaItem[];
+  reading: ReadingItem[];
   social: SocialLink[];
 }

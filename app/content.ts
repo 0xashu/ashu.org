@@ -1,14 +1,15 @@
 import type { SiteContent } from "./types";
+import { readingList } from "./reading/data";
 
 export const siteContent: SiteContent = {
   name: "Ashu",
   title: "Hello, I'm Ashu",
-  intro:
-    "A brief introduction about yourself. What you do, what you're passionate about, and what drives you. Keep it concise and authentic.",
+  intro: "A product manager, designer, and coder sometimes.",
 
   nav: [
     { label: "Working", href: "#working" },
-    { label: "Projects", href: "#projects" },
+    { label: "Ideas", href: "#ideas" },
+    { label: "Reading", href: "/reading" },
   ],
 
   working: [
@@ -17,6 +18,7 @@ export const siteContent: SiteContent = {
       url: "https://nonce.app",
       description: "A bitcoin mining tool for 10% hashrate.",
       period: "2025 - Now",
+      tags: ["Cofounder", "Mining", "AI First", "SaaS"],
     },
     {
       company: "Mest",
@@ -24,6 +26,7 @@ export const siteContent: SiteContent = {
       status: "Acquired",
       description: "All stories about smart money.",
       period: "2022 - 2024",
+      tags: ["Cofounder", "Smart Money", "Data Analytics", "SocialFi"],
     },
     {
       company: "imToken",
@@ -31,30 +34,48 @@ export const siteContent: SiteContent = {
       status: "B Series",
       description: "An ethereum wallet for 20M+ users.",
       period: "2016 - 2022",
+      tags: ["Cofounder", "Multi-Chain Wallet", "DeFi", "Mobile"],
     },
   ],
 
-  projects: [
+  ideas: [
     {
-      name: "Project Name",
-      description: "A brief description of the project and what it does.",
+      name: "ETHGlobal New York",
+      description: "",
       url: "#",
+      type: "hackathon",
     },
     {
-      name: "Another Project",
-      description: "Description of another project you've worked on.",
+      name: "ETHGlobal San Francisco",
+      description: "",
       url: "#",
+      type: "hackathon",
     },
     {
-      name: "Open Source Work",
-      description: "Contributions to open source or community projects.",
+      name: "WANG XIANG Hackathon 01",
+      description: "",
       url: "#",
+      type: "hackathon",
+    },
+    {
+      name: "Todo Item 1",
+      description: "",
+      url: "#",
+      type: "todo",
+    },
+    {
+      name: "Todo Item 2",
+      description: "",
+      url: "#",
+      type: "todo",
     },
   ],
+
+  reading: readingList,
 
   social: [
-    { label: "Email", url: "mailto:your@email.com" },
-    { label: "Twitter", url: "https://twitter.com/yourusername" },
-    { label: "GitHub", url: "https://github.com/yourusername" },
+    { label: "Email", url: "hi@ashu.org" },
+    { label: "Twitter", url: "https://x.com/0xashu" },
+    { label: "GitHub", url: "https://github.com/0xashu" },
   ],
 };
