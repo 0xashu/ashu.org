@@ -1,8 +1,11 @@
+import Link from "next/link";
+
 type TreeItem = {
   title: React.ReactNode;
   description?: string;
   status?: string;
   period?: string;
+  url: string;
 };
 
 export function TreeList({ items }: { items: TreeItem[] }) {
@@ -23,14 +26,22 @@ export function TreeList({ items }: { items: TreeItem[] }) {
               )}
             </div>
             <div className="flex-1 pb-4">
-              <div className="h-6 flex items-baseline gap-2">
-                <span>{item.title}</span>
+              <Link
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-6 flex items-baseline gap-2 group cursor-pointer"
+              >
+                <span className="group-hover:underline cursor-pointer">
+                  {item.title}
+                </span>
+
                 {item.status && (
                   <span className="text-zinc-400">{item.status}</span>
                 )}
-              </div>
+              </Link>
               {item.description && (
-                <p className="text-zinc-400">{item.description}</p>
+                <p className="text-zinc-400 mt-2">{item.description}</p>
               )}
               {item.period && (
                 <p className="text-zinc-400 text-sm mt-2">{item.period}</p>

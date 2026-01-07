@@ -59,6 +59,7 @@ export default function Home() {
               status: job.status,
               description: job.description,
               period: job.period,
+              url: job.url,
             }))}
           />
         </section>
@@ -69,15 +70,9 @@ export default function Home() {
           </h2>
           <TreeList
             items={projects.map((project) => ({
-              title: (
-                <a
-                  href={project.url}
-                  className="hover:text-zinc-400 transition-colors"
-                >
-                  {project.name}
-                </a>
-              ),
+              title: project.name,
               description: project.description,
+              url: project.url,
             }))}
           />
         </section>

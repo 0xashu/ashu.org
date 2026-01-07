@@ -1,4 +1,6 @@
-export const siteContent = {
+import type { SiteContent } from "./types";
+
+export const siteContent: SiteContent = {
   name: "Ashu",
   title: "Hello, I'm Ashu",
   intro:
@@ -12,17 +14,20 @@ export const siteContent = {
   working: [
     {
       company: "Nonce",
+      url: "https://nonce.app",
       description: "A bitcoin mining tool for 10% hashrate.",
       period: "2025 - Now",
     },
     {
       company: "Mest",
+      url: "https://mest.io",
       status: "Acquired",
       description: "All stories about smart money.",
       period: "2022 - 2024",
     },
     {
       company: "imToken",
+      url: "https://token.im",
       status: "B Series",
       description: "An ethereum wallet for 20M+ users.",
       period: "2016 - 2022",
