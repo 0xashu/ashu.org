@@ -1,11 +1,9 @@
 import { siteContent } from "./content";
 import Link from "next/link";
 import { TreeList } from "./components/TreeList";
-import { PinterestGrid } from "./components/PinterestGrid";
 
 export default function Home() {
-  const { title, intro, nav, working, ideas, photographs, movies, social } =
-    siteContent;
+  const { title, intro, nav, working, ideas, social } = siteContent;
 
   return (
     <div className="min-h-screen">
