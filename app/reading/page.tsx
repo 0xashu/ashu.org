@@ -83,7 +83,7 @@ export default function Reading() {
                         src={book.cover}
                         alt={book.title}
                         fill
-                        unoptimized
+                        sizes="(max-width: 768px) 25vw, 20vw"
                         className="object-cover"
                       />
                     ) : (
