@@ -39,54 +39,54 @@ export default function Home() {
           </header>
 
           <main>
-        <section id="working" className="mb-20">
-          <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">
-            Working
-          </h2>
-          <TreeList
-            items={working.map((job) => ({
-              title: job.company,
-              status: job.status,
-              description: job.description,
-              period: job.period,
-              url: job.url,
-              tags: job.tags,
-            }))}
-          />
-        </section>
+            <section id="working" className="mb-20">
+              <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">
+                Working
+              </h2>
+              <TreeList
+                items={working.map((job) => ({
+                  title: job.company,
+                  status: job.status,
+                  description: job.description,
+                  period: job.period,
+                  url: job.url,
+                  tags: job.tags,
+                }))}
+              />
+            </section>
 
-        <section id="ideas" className="mb-20">
-          <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">
-            Ideas
-          </h2>
-          <TreeList
-            items={[
-              ...ideas
-                .filter((idea) => idea.type === "hackathon")
-                .map((idea) => ({
-                  title: idea.name,
-                  description: idea.description,
-                  url: idea.url ?? "",
-                  tags: idea.tags,
-                })),
-              {
-                title: "TODO",
-                description: "Things I want to do",
-                todos: ideas
-                  .filter((idea) => idea.type === "todo")
-                  .map((idea) => ({
-                    title: idea.name,
-                    description: idea.description,
-                    completed: idea.completed ?? false,
-                  })),
-              },
-            ]}
-          />
-        </section>
+            <section id="ideas" className="mb-20">
+              <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">
+                Ideas
+              </h2>
+              <TreeList
+                items={[
+                  ...ideas
+                    .filter((idea) => idea.type === "hackathon")
+                    .map((idea) => ({
+                      title: idea.name,
+                      description: idea.description,
+                      url: idea.url ?? "",
+                      tags: idea.tags,
+                    })),
+                  {
+                    title: "TODO",
+                    description: "Things I want to do",
+                    todos: ideas
+                      .filter((idea) => idea.type === "todo")
+                      .map((idea) => ({
+                        title: idea.name,
+                        description: idea.description,
+                        completed: idea.completed ?? false,
+                      })),
+                  },
+                ]}
+              />
+            </section>
           </main>
         </div>
 
-        <nav className="hidden md:flex w-48 lg:w-56 px-6 md:px-8 lg:px-12 pt-[calc(37.5vh-4rem)]">
+        <nav className="hidden md:flex w-96 px-6 md:px-8 lg:px-12 pt-[calc(37.5vh-4rem)]">
           <ul className="flex flex-col gap-3 items-start sticky top-16 self-start">
             <li>
               <div className="size-6 rounded-full bg-yellow-400" />

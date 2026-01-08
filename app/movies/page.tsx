@@ -2,13 +2,15 @@
 
 import { siteContent } from "../content";
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { cn } from "../lib/utils";
+import { PinterestGrid } from "../components/PinterestGrid";
 
 export default function Movies() {
   const { movies } = siteContent;
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const hasHover = hoveredIndex !== null;
 
   return (
     <div className="min-h-screen">
@@ -32,7 +34,6 @@ export default function Movies() {
               <ul className="space-y-1 font-mono text-sm uppercase tracking-wide">
                 {movies.map((movie, index) => {
                   const isHovered = hoveredIndex === index;
-                  const hasHover = hoveredIndex !== null;
 
                   return (
                     <li key={movie.title}>
@@ -58,46 +59,16 @@ export default function Movies() {
           </div>
 
           <div className="flex-1">
-            <div className="columns-1 sm:columns-2 gap-4">
-              {movies.map((movie, index) => {
-                const isHovered = hoveredIndex === index;
-                const hasHover = hoveredIndex !== null;
-
-                return (
-                  <div key={movie.title} className="break-inside-avoid mb-4">
-                    <div
-                      className={cn(
-                        "relative rounded-xs overflow-hidden transition-[filter,box-shadow] duration-500 ease-out cursor-default border-6 shadow-sm hover:shadow-lg will-change-[filter]",
-                        hasHover
-                          ? isHovered
-                            ? "grayscale-0 brightness-100"
-                            : "grayscale brightness-75"
-                          : "grayscale-0 brightness-100"
-                      )}
-                      onMouseEnter={() => setHoveredIndex(index)}
-                      onMouseLeave={() => setHoveredIndex(null)}
-                    >
-                      {movie.cover ? (
-                        <Image
-                          src={movie.cover}
-                          alt={movie.title}
-                          width={600}
-                          height={900}
-                          unoptimized
-                          className="w-full h-auto object-cover"
-                        />
-                      ) : (
-                        <div className="w-full aspect-2/3 bg-zinc-200 flex items-center justify-center p-2">
-                          <span className="text-xs text-zinc-500 text-center font-mono leading-tight">
-                            {movie.title}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <PinterestGrid
+              items={movies.map((movie) => ({
+                title: movie.title,
+                image: movie.cover,
+              }))}
+              columns={2}
+              dimOnHover
+              hoveredIndex={hoveredIndex}
+              onHoverChange={setHoveredIndex}
+            />
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ export const siteContent: SiteContent = {
     {
       company: "Nonce",
       url: "https://nonce.app",
-      description: "A Bitcoin mining tool with 10% global hashrate.",
+      description: "A Bitcoin mining tool with 5% global hashrate.",
       period: "2025 - Now",
       tags: ["Cofounder", "Mining", "AI First", "SaaS"],
     },
@@ -72,7 +72,7 @@ export const siteContent: SiteContent = {
       type: "hackathon",
     },
     {
-      name: "Nervermore",
+      name: "Nevermore",
       description: "A social credit system on the blockchain.",
       url: "https://github.com/janx/nevermore",
       tags: ["Hackathon", "WanXiang Shanghai 2016", "Blockchain"],

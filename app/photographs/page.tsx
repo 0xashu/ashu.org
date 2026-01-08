@@ -17,10 +17,6 @@ export default function Photographs() {
           >
             Back
           </Link>
-          <p className="text-sm leading-relaxed max-w-lg">
-            A collection of photographs that capture moments and perspectives I
-            find meaningful.
-          </p>
         </header>
 
         <PinterestGrid
