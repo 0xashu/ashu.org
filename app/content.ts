@@ -1,6 +1,5 @@
 import type { SiteContent } from "./types";
 import { readingList } from "./reading/data";
-import { photographList } from "./photographs/data";
 import { movieList } from "./movies/data";
 
 export const siteContent: SiteContent = {
@@ -91,8 +90,6 @@ export const siteContent: SiteContent = {
   ],
 
   reading: readingList,
-
-  photographs: photographList,
 
   movies: movieList,
 
