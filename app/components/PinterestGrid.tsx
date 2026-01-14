@@ -8,6 +8,7 @@ type PinterestItem = {
   title: string;
   image?: string;
   subtitle?: string;
+  blurDataURL?: string;
 };
 
 type PinterestGridProps = {
@@ -16,6 +17,7 @@ type PinterestGridProps = {
   dimOnHover?: boolean;
   hoveredIndex?: number | null;
   onHoverChange?: (index: number | null) => void;
+  onItemClick?: (index: number) => void;
 };
 
 export function PinterestGrid({
@@ -24,6 +26,7 @@ export function PinterestGrid({
   dimOnHover = false,
   hoveredIndex: controlledHoveredIndex,
   onHoverChange,
+  onItemClick,
 }: PinterestGridProps) {
   const [internalHoveredIndex, setInternalHoveredIndex] = useState<
     number | null
@@ -66,6 +69,7 @@ export function PinterestGrid({
                   )}
                   onMouseEnter={() => setHoveredIndex?.(index)}
                   onMouseLeave={() => setHoveredIndex?.(null)}
+                  onClick={() => onItemClick?.(index)}
                 >
                   {item.image ? (
                     <Image
@@ -75,6 +79,9 @@ export function PinterestGrid({
                       height={900}
                       sizes="(max-width: 768px) 50vw, 33vw"
                       className="w-full h-auto object-cover"
+                      placeholder={item.blurDataURL ? "blur" : "empty"}
+                      blurDataURL={item.blurDataURL}
+                      priority={index < 6}
                     />
                   ) : (
                     <div className="w-full aspect-2/3 bg-zinc-200 flex items-center justify-center p-2">

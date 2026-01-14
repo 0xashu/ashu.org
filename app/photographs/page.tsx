@@ -1,11 +1,10 @@
-"use client";
-
-import { siteContent } from "../content";
+import { Suspense } from "react";
 import Link from "next/link";
-import { PinterestGrid } from "../components/PinterestGrid";
+import { PhotosByYear } from "./PhotosByYear";
+import { getPhotos } from "./getPhotos";
 
 export default function Photographs() {
-  const { photographs } = siteContent;
+  const photos = getPhotos();
 
   return (
     <div className="min-h-screen">
@@ -19,13 +18,9 @@ export default function Photographs() {
           </Link>
         </header>
 
-        <PinterestGrid
-          items={photographs.map((photo) => ({
-            title: photo.title,
-            image: photo.image,
-            subtitle: photo.description,
-          }))}
-        />
+        <Suspense fallback={null}>
+          <PhotosByYear photos={photos} />
+        </Suspense>
       </div>
     </div>
   );
