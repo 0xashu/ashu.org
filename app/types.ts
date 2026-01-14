@@ -24,6 +24,7 @@ export interface IdeaItem {
 }
 
 export interface ReadingItem {
+  id: string;
   title: string;
   author: string;
   cover?: string;
@@ -32,14 +33,25 @@ export interface ReadingItem {
 }
 
 export interface PhotographItem {
+  id: string;
   title: string;
   image: string;
+  year: number;
+  date?: string;
+  location?: string;
   description?: string;
-  url?: string;
   tags?: string[];
+  camera?: string;
+  lens?: string;
+  focalLength?: string;
+  aperture?: string;
+  shutter?: string;
+  iso?: string;
+  blurDataURL?: string;
 }
 
 export interface MovieItem {
+  id: string;
   title: string;
   director: string;
   cover: string;
@@ -61,7 +73,6 @@ export interface SiteContent {
   working: WorkingItem[];
   ideas: IdeaItem[];
   reading: ReadingItem[];
-  photographs: PhotographItem[];
   movies: MovieItem[];
   social: SocialLink[];
 }

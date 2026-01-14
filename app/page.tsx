@@ -1,9 +1,29 @@
 import { siteContent } from "./content";
 import Link from "next/link";
 import { TreeList } from "./components/TreeList";
+import { FeaturedSection } from "./components/FeaturedSection";
+import { featuredConfig } from "./featured";
+import { readingList } from "./reading/data";
+import { movieList } from "./movies/data";
+import { getPhotos } from "./photographs/getPhotos";
+import type { ReadingItem, MovieItem, PhotographItem } from "./types";
 
 export default function Home() {
   const { title, intro, nav, working, ideas, social } = siteContent;
+
+  const photos = getPhotos();
+
+  const featuredReading = featuredConfig.reading
+    .map((id) => readingList.find((item) => item.id === id))
+    .filter((item): item is ReadingItem => item !== undefined);
+
+  const featuredMovies = featuredConfig.movies
+    .map((id) => movieList.find((item) => item.id === id))
+    .filter((item): item is MovieItem => item !== undefined);
+
+  const featuredPhotos = featuredConfig.photos
+    .map((id) => photos.find((item) => `${item.year}/${item.id}` === id))
+    .filter((item): item is PhotographItem => item !== undefined);
 
   return (
     <div className="min-h-screen">
@@ -81,6 +101,12 @@ export default function Home() {
                 ]}
               />
             </section>
+
+            <FeaturedSection
+              reading={featuredReading}
+              movies={featuredMovies}
+              photos={featuredPhotos}
+            />
           </main>
         </div>
 
