@@ -1,13 +1,12 @@
 "use client";
 
-import { siteContent } from "../content";
+import { films } from "../data";
 import Link from "next/link";
 import { useState } from "react";
 import { cn } from "../lib/utils";
 import { PinterestGrid } from "../components/PinterestGrid";
 
-export default function Movies() {
-  const { movies } = siteContent;
+export default function Films() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const hasHover = hoveredIndex !== null;
@@ -32,11 +31,11 @@ export default function Movies() {
             </p>
             <nav>
               <ul className="space-y-1 font-mono text-sm uppercase tracking-wide">
-                {movies.map((movie, index) => {
+                {films.map((film, index) => {
                   const isHovered = hoveredIndex === index;
 
                   return (
-                    <li key={movie.title}>
+                    <li key={film.title}>
                       <span
                         className={cn(
                           "block py-0.5 transition-colors duration-500 ease-out cursor-default will-change-[color]",
@@ -49,7 +48,7 @@ export default function Movies() {
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
                       >
-                        {movie.title}
+                        {film.title}
                       </span>
                     </li>
                   );
@@ -60,9 +59,9 @@ export default function Movies() {
 
           <div className="flex-1">
             <PinterestGrid
-              items={movies.map((movie) => ({
-                title: movie.title,
-                image: movie.cover,
+              items={films.map((film) => ({
+                title: film.title,
+                image: film.imageUrl,
               }))}
               columns={2}
               dimOnHover
