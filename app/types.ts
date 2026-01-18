@@ -1,78 +1,42 @@
-export interface NavItem {
-  label: string;
-  href: string;
-}
-
-export interface WorkingItem {
-  company: string;
-  description: string;
-  period: string;
-  status?: string;
-  url: string;
-  tags?: string[];
-}
-
-export interface IdeaItem {
-  name: string;
-  description: string;
-  type: "hackathon" | "todo";
-  url?: string;
-  status?: string;
-  period?: string;
-  tags?: string[];
-  completed?: boolean;
-}
-
-export interface ReadingItem {
-  id: string;
-  title: string;
-  author: string;
-  cover?: string;
-  url?: string;
-  description?: string;
-}
-
-export interface PhotographItem {
-  id: string;
-  title: string;
-  image: string;
-  year: number;
-  date?: string;
-  location?: string;
-  description?: string;
-  tags?: string[];
+// EXIF metadata for photos
+export interface Exif {
   camera?: string;
   lens?: string;
   focalLength?: string;
   aperture?: string;
   shutter?: string;
   iso?: string;
-  blurDataURL?: string;
 }
 
-export interface MovieItem {
+// Universal type for all media (book, film, photo)
+export interface Item {
   id: string;
   title: string;
-  director: string;
-  cover: string;
+  imageUrl: string;
   description?: string;
   url?: string;
   tags?: string[];
+  // Photo-specific (optional)
+  location?: string;
+  year?: number;
+  date?: string;
+  exif?: Exif;
+  blurDataURL?: string;
 }
 
-export interface SocialLink {
-  label: string;
-  url: string;
-}
-
-export interface SiteContent {
-  name: string;
+// Project type for work and side projects
+export interface Project {
   title: string;
-  intro: string;
-  nav: NavItem[];
-  working: WorkingItem[];
-  ideas: IdeaItem[];
-  reading: ReadingItem[];
-  movies: MovieItem[];
-  social: SocialLink[];
+  description: string;
+  url: string;
+  period?: string;
+  status?: string;
+  tags?: string[];
+  category?: "work" | "hackathon" | "idea";
+}
+
+// Simple todo item
+export interface Todo {
+  title: string;
+  completed?: boolean;
 }
