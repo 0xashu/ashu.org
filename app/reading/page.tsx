@@ -1,13 +1,12 @@
 "use client";
 
-import { siteContent } from "../content";
+import { books } from "../data";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "../lib/utils";
 
 export default function Reading() {
-  const { reading } = siteContent;
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -31,7 +30,7 @@ export default function Reading() {
             </p>
             <nav>
               <ul className="space-y-1 font-mono text-sm uppercase tracking-wide">
-                {reading.map((book, index) => {
+                {books.map((book, index) => {
                   const isHovered = hoveredIndex === index;
                   const hasHover = hoveredIndex !== null;
 
@@ -60,7 +59,7 @@ export default function Reading() {
 
           <div className="flex-1">
             <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
-              {reading.map((book, index) => {
+              {books.map((book, index) => {
                 const isHovered = hoveredIndex === index;
                 const hasHover = hoveredIndex !== null;
 
@@ -78,9 +77,9 @@ export default function Reading() {
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}
                   >
-                    {book.cover ? (
+                    {book.imageUrl ? (
                       <Image
-                        src={book.cover}
+                        src={book.imageUrl}
                         alt={book.title}
                         fill
                         sizes="(max-width: 768px) 25vw, 20vw"
