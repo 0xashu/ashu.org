@@ -1,43 +1,117 @@
-# Content System
+# Content Management
 
-File-based content management. Filesystem is the source of truth.
+Guide for updating portfolio content. All data lives in `app/data/`.
 
-## Structure
+## Data Structure
 
 ```
-/public/reading/{id}.jpg      + metadata.json
-/public/movies/{id}.jpg       + metadata.json
-/public/photographs/{year}/{id}.jpg + metadata.json
+app/data/
+├── index.ts      # Exports everything
+├── site.ts       # name, nav, social, projects, todos
+├── books.ts      # Book list
+├── films.ts      # Film list
+├── photos.ts     # Generated at build time
+└── featured.ts   # Featured items config
 ```
 
-## Rules
+## Types
 
-1. **Filename = ID** - `inception.jpg` → id is `inception`
-2. **Kebab-case** - lowercase, hyphens for spaces
-3. **One metadata.json per folder** - contains all entries for that content type
-4. **Photos use year subfolders** - id format: `{year}/{filename}`
+All items use the unified `Item` type from `app/types.ts`:
 
-## LLM Tasks
+```ts
+interface Item {
+  id: string;
+  title: string;
+  imageUrl: string;
+  description?: string;  // Author for books, director for films
+  url?: string;
+  tags?: string[];
+  location?: string;     // Photos only
+  year?: number;         // Photos only
+  date?: string;         // Photos only
+  exif?: Exif;           // Photos only
+}
+```
 
-### "scan [type]" or "update [type] metadata"
-1. List images in `/public/{type}/`
-2. Read `metadata.json`
-3. Find images without metadata entries
-4. For each missing: infer title from filename, research details if needed
-5. Add entry to `metadata.json`
+## Adding Content
 
-### "validate content"
-1. Check each content type
-2. Report: images without metadata, metadata without images, missing required fields
+### Add a Book
+1. Add image to `public/reading/{id}.jpg`
+2. Add entry to `app/data/books.ts`:
+```ts
+{
+  id: "book-id",
+  title: "Book Title",
+  description: "Author Name",
+  imageUrl: "/reading/book-id.jpg",
+}
+```
 
-### "add to featured"
-1. Update `featured` array in `/app/content/config.ts`
-2. Use the item's ID
+### Add a Film
+1. Add image to `public/films/{id}.jpg`
+2. Add entry to `app/data/films.ts`:
+```ts
+{
+  id: "film-id",
+  title: "Film Title",
+  description: "Director Name",
+  imageUrl: "/films/film-id.jpg",
+}
+```
 
-## Metadata Format
+### Add a Photo
+1. Add image to `public/photographs/{year}/{id}.jpg`
+2. Run `bun run generate` to extract EXIF and update `app/data/photos.ts`
+3. Optionally add metadata override in `public/photographs/metadata.json`:
+```json
+{
+  "2025/photo-id": {
+    "title": "Custom Title",
+    "location": "Location Name"
+  }
+}
+```
 
-See `/app/content/types.ts` for field definitions.
+### Add a Project
+Add entry to `app/data/site.ts` in the `projects` array:
+```ts
+{
+  title: "Project Name",
+  description: "What it does",
+  url: "https://...",
+  tags: ["Tag1", "Tag2"],
+  category: "work" | "hackathon" | "idea",
+  period: "2024 - Now",  // work only
+  status: "Active",      // optional
+}
+```
 
-Reading requires: `title`, `author`
-Movies requires: `title`, `director`
-Photos: all optional (EXIF auto-extracted)
+### Add a Todo
+Add entry to `app/data/site.ts` in the `todos` array:
+```ts
+{ title: "Goal description" }
+```
+
+### Update Featured
+Edit `app/data/featured.ts`:
+```ts
+export const featured = {
+  reading: ["book-id-1", "book-id-2", "book-id-3"],
+  films: ["film-id-1", "film-id-2", "film-id-3"],
+  photos: ["2025/photo-id-1", "2025/photo-id-2", "2025/photo-id-3"],
+};
+```
+
+## File Naming
+
+- **Kebab-case**: lowercase, hyphens for spaces (`dark-knight-rises.jpg`)
+- **Filename = ID**: `inception.jpg` → id is `inception`
+- **Photos use year folders**: `2025/sunset.jpg` → id is `sunset`, year is `2025`
+
+## Build Commands
+
+```bash
+bun run generate  # Regenerate photos.ts from filesystem
+bun run build     # Runs generate + next build
+bun run dev       # Development server
+```
