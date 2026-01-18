@@ -1,29 +1,23 @@
-import { siteContent } from "./content";
+import { site, projects, todos, books, films, photos, featured } from "./data";
 import Link from "next/link";
 import { TreeList } from "./components/TreeList";
 import { FeaturedSection } from "./components/FeaturedSection";
-import { featuredConfig } from "./featured";
-import { readingList } from "./reading/data";
-import { movieList } from "./movies/data";
-import { getPhotos } from "./photographs/getPhotos";
-import type { ReadingItem, MovieItem, PhotographItem } from "./types";
+import type { Item } from "./types";
 
 export default function Home() {
-  const { title, intro, nav, working, ideas, social } = siteContent;
+  const { title, intro, nav, social } = site;
 
-  const photos = getPhotos();
+  const featuredBooks = featured.reading
+    .map((id) => books.find((item) => item.id === id))
+    .filter((item): item is Item => item !== undefined);
 
-  const featuredReading = featuredConfig.reading
-    .map((id) => readingList.find((item) => item.id === id))
-    .filter((item): item is ReadingItem => item !== undefined);
+  const featuredFilms = featured.films
+    .map((id) => films.find((item) => item.id === id))
+    .filter((item): item is Item => item !== undefined);
 
-  const featuredMovies = featuredConfig.movies
-    .map((id) => movieList.find((item) => item.id === id))
-    .filter((item): item is MovieItem => item !== undefined);
-
-  const featuredPhotos = featuredConfig.photos
+  const featuredPhotos = featured.photos
     .map((id) => photos.find((item) => `${item.year}/${item.id}` === id))
-    .filter((item): item is PhotographItem => item !== undefined);
+    .filter((item): item is Item => item !== undefined);
 
   return (
     <div className="min-h-screen">
@@ -62,14 +56,16 @@ export default function Home() {
                 Working
               </h2>
               <TreeList
-                items={working.map((job) => ({
-                  title: job.company,
-                  status: job.status,
-                  description: job.description,
-                  period: job.period,
-                  url: job.url,
-                  tags: job.tags,
-                }))}
+                items={projects
+                  .filter((p) => p.category === "work")
+                  .map((p) => ({
+                    title: p.title,
+                    status: p.status,
+                    description: p.description,
+                    period: p.period,
+                    url: p.url,
+                    tags: p.tags,
+                  }))}
               />
             </section>
 
@@ -79,32 +75,29 @@ export default function Home() {
               </h2>
               <TreeList
                 items={[
-                  ...ideas
-                    .filter((idea) => idea.type === "hackathon")
-                    .map((idea) => ({
-                      title: idea.name,
-                      description: idea.description,
-                      url: idea.url ?? "",
-                      tags: idea.tags,
+                  ...projects
+                    .filter((p) => p.category === "hackathon" || p.category === "idea")
+                    .map((p) => ({
+                      title: p.title,
+                      description: p.description,
+                      url: p.url,
+                      tags: p.tags,
                     })),
                   {
                     title: "TODO",
                     description: "Things I want to do",
-                    todos: ideas
-                      .filter((idea) => idea.type === "todo")
-                      .map((idea) => ({
-                        title: idea.name,
-                        description: idea.description,
-                        completed: idea.completed ?? false,
-                      })),
+                    todos: todos.map((t) => ({
+                      title: t.title,
+                      completed: t.completed ?? false,
+                    })),
                   },
                 ]}
               />
             </section>
 
             <FeaturedSection
-              reading={featuredReading}
-              movies={featuredMovies}
+              books={featuredBooks}
+              films={featuredFilms}
               photos={featuredPhotos}
             />
           </main>

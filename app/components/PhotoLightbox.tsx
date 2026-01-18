@@ -2,20 +2,10 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import type { Item } from "../types";
 
 type PhotoLightboxProps = {
-  photo: {
-    title: string;
-    image: string;
-    date?: string;
-    location?: string;
-    camera?: string;
-    lens?: string;
-    focalLength?: string;
-    aperture?: string;
-    shutter?: string;
-    iso?: string;
-  } | null;
+  photo: Item | null;
   isOpen: boolean;
   onClose: () => void;
 };
@@ -47,11 +37,12 @@ export function PhotoLightbox({ photo, isOpen, onClose }: PhotoLightboxProps) {
 
   if (!photo) return null;
 
+  const exif = photo.exif;
   const exifParts = [
-    photo.focalLength,
-    photo.aperture,
-    photo.shutter,
-    photo.iso ? `ISO ${photo.iso}` : null,
+    exif?.focalLength,
+    exif?.aperture,
+    exif?.shutter,
+    exif?.iso ? `ISO ${exif.iso}` : null,
   ].filter(Boolean);
 
   return (
@@ -64,7 +55,7 @@ export function PhotoLightbox({ photo, isOpen, onClose }: PhotoLightboxProps) {
       <div className="flex items-center justify-center w-full h-full pb-28 cursor-pointer">
         <Image
           ref={imageRef}
-          src={photo.image}
+          src={photo.imageUrl}
           alt={photo.title}
           width={1600}
           height={1200}
@@ -81,9 +72,9 @@ export function PhotoLightbox({ photo, isOpen, onClose }: PhotoLightboxProps) {
               {[photo.date, photo.location].filter(Boolean).join(" · ")}
             </p>
           )}
-          {(photo.camera || photo.lens) && (
+          {(exif?.camera || exif?.lens) && (
             <p className="text-xs text-white/40">
-              {[photo.camera, photo.lens].filter(Boolean).join(" · ")}
+              {[exif.camera, exif.lens].filter(Boolean).join(" · ")}
             </p>
           )}
           {exifParts.length > 0 && (

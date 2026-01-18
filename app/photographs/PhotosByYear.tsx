@@ -4,10 +4,10 @@ import { useMemo, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PinterestGrid } from "../components/PinterestGrid";
 import { PhotoLightbox } from "../components/PhotoLightbox";
-import type { PhotographItem } from "../types";
+import type { Item } from "../types";
 
 type PhotosByYearProps = {
-  photos: PhotographItem[];
+  photos: Item[];
 };
 
 export function PhotosByYear({ photos }: PhotosByYearProps) {
@@ -16,11 +16,11 @@ export function PhotosByYear({ photos }: PhotosByYearProps) {
 
   const photosByYear = useMemo(() => {
     const grouped = photos.reduce((acc, photo) => {
-      const year = photo.year;
+      const year = photo.year ?? 0;
       if (!acc[year]) acc[year] = [];
       acc[year].push(photo);
       return acc;
-    }, {} as Record<number, PhotographItem[]>);
+    }, {} as Record<number, Item[]>);
 
     return Object.entries(grouped)
       .sort(([a], [b]) => Number(b) - Number(a))
@@ -70,7 +70,7 @@ export function PhotosByYear({ photos }: PhotosByYearProps) {
           <PinterestGrid
             items={yearPhotos.map((photo) => ({
               title: photo.title,
-              image: photo.image,
+              image: photo.imageUrl,
               subtitle: photo.location,
               blurDataURL: photo.blurDataURL,
             }))}

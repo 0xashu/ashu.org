@@ -4,12 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { cn } from "../lib/utils";
-import type { ReadingItem, MovieItem, PhotographItem } from "../types";
+import type { Item } from "../types";
 
 type FeaturedSectionProps = {
-  reading: ReadingItem[];
-  movies: MovieItem[];
-  photos: PhotographItem[];
+  books: Item[];
+  films: Item[];
+  photos: Item[];
 };
 
 type FeaturedItemProps = {
@@ -32,7 +32,7 @@ function FeaturedItem({
   return (
     <div
       className={cn(
-        "relative aspect-[2/3] rounded-xs overflow-hidden transition-[filter,box-shadow] duration-500 ease-out cursor-pointer shadow-sm hover:shadow-xl border-6"
+        "relative aspect-2/3 rounded-xs overflow-hidden transition-[filter,box-shadow] duration-500 ease-out cursor-pointer shadow-sm hover:shadow-xl border-6"
       )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -60,8 +60,8 @@ function FeaturedItem({
 }
 
 export function FeaturedSection({
-  reading,
-  movies,
+  books,
+  films,
   photos,
 }: FeaturedSectionProps) {
   const [hoveredIndex, setHoveredIndex] = useState<string | null>(null);
@@ -73,7 +73,7 @@ export function FeaturedSection({
       </h2>
 
       <div className="space-y-10">
-        {reading.length > 0 && (
+        {books.length > 0 && (
           <div>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xs text-zinc-400 uppercase tracking-wide">
@@ -87,14 +87,14 @@ export function FeaturedSection({
               </Link>
             </div>
             <div className="grid grid-cols-3 gap-4">
-              {reading.map((item) => (
+              {books.map((item) => (
                 <FeaturedItem
                   key={item.id}
-                  image={item.cover || ""}
+                  image={item.imageUrl}
                   title={item.title}
-                  subtitle={item.author}
-                  isHovered={hoveredIndex === `reading-${item.id}`}
-                  onMouseEnter={() => setHoveredIndex(`reading-${item.id}`)}
+                  subtitle={item.description || ""}
+                  isHovered={hoveredIndex === `book-${item.id}`}
+                  onMouseEnter={() => setHoveredIndex(`book-${item.id}`)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 />
               ))}
@@ -102,11 +102,11 @@ export function FeaturedSection({
           </div>
         )}
 
-        {movies.length > 0 && (
+        {films.length > 0 && (
           <div>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xs text-zinc-400 uppercase tracking-wide">
-                Movies
+                Films
               </h3>
               <Link
                 href="/movies"
@@ -116,14 +116,14 @@ export function FeaturedSection({
               </Link>
             </div>
             <div className="grid grid-cols-3 gap-4">
-              {movies.map((item) => (
+              {films.map((item) => (
                 <FeaturedItem
                   key={item.id}
-                  image={item.cover}
+                  image={item.imageUrl}
                   title={item.title}
-                  subtitle={item.director}
-                  isHovered={hoveredIndex === `movies-${item.id}`}
-                  onMouseEnter={() => setHoveredIndex(`movies-${item.id}`)}
+                  subtitle={item.description || ""}
+                  isHovered={hoveredIndex === `film-${item.id}`}
+                  onMouseEnter={() => setHoveredIndex(`film-${item.id}`)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 />
               ))}
@@ -148,7 +148,7 @@ export function FeaturedSection({
               {photos.map((item) => (
                 <FeaturedItem
                   key={item.id}
-                  image={item.image}
+                  image={item.imageUrl}
                   title={item.title}
                   subtitle={item.location || String(item.year)}
                   isHovered={hoveredIndex === `photos-${item.id}`}
