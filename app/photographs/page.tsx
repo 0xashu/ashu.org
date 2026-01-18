@@ -1,11 +1,9 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { PhotosByYear } from "./PhotosByYear";
-import { getPhotos } from "./getPhotos";
+import { photos } from "../data";
 
 export default function Photographs() {
-  const photos = getPhotos();
-
   return (
     <div className="min-h-screen">
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-16 py-16">

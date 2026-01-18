@@ -1,21 +1,25 @@
 import fs from "fs";
 import path from "path";
 import ExifReader from "exifreader";
-import type { PhotographItem } from "../types";
 
 const PHOTOS_DIR = path.join(process.cwd(), "public/photographs");
 const METADATA_FILE = path.join(PHOTOS_DIR, "metadata.json");
+const OUTPUT_FILE = path.join(process.cwd(), "app/data/photos.ts");
 
-type MetadataOverride = {
-  title?: string;
-  date?: string;
-  location?: string;
+type Exif = {
   camera?: string;
   lens?: string;
   focalLength?: string;
   aperture?: string;
   shutter?: string;
   iso?: string;
+};
+
+type MetadataOverride = {
+  title?: string;
+  date?: string;
+  location?: string;
+  exif?: Exif;
 };
 
 type MetadataConfig = Record<string, MetadataOverride>;
@@ -58,7 +62,11 @@ function formatCoordinates(lat: number, lng: number): string {
   return `${Math.abs(lat).toFixed(4)}°${latDir}, ${Math.abs(lng).toFixed(4)}°${lngDir}`;
 }
 
-function extractExif(imagePath: string) {
+function extractExif(imagePath: string): {
+  exif: Exif;
+  date?: string;
+  location?: string;
+} {
   try {
     const buffer = fs.readFileSync(imagePath);
     const tags = ExifReader.load(buffer);
@@ -88,22 +96,35 @@ function extractExif(imagePath: string) {
     const dateTime = tags.DateTimeOriginal?.description;
 
     return {
-      camera,
-      lens: tags.LensModel?.description,
-      focalLength: focalLength ? `${Math.round(Number(focalLength))}mm` : undefined,
-      aperture: fNumber ? `f/${fNumber}` : undefined,
-      shutter: exposureTime ? formatShutter(Number(exposureTime)) : undefined,
-      iso: iso ? String(iso) : undefined,
+      exif: {
+        camera,
+        lens: tags.LensModel?.description,
+        focalLength: focalLength
+          ? `${Math.round(Number(focalLength))}mm`
+          : undefined,
+        aperture: fNumber ? `f/${fNumber}` : undefined,
+        shutter: exposureTime ? formatShutter(Number(exposureTime)) : undefined,
+        iso: iso ? String(iso) : undefined,
+      },
       date: dateTime ? formatDate(dateTime) : undefined,
       location,
     };
   } catch {
-    return {};
+    return { exif: {} };
   }
 }
 
-export function getPhotos(): PhotographItem[] {
-  const photos: PhotographItem[] = [];
+function generatePhotos() {
+  const photos: Array<{
+    id: string;
+    title: string;
+    imageUrl: string;
+    year: number;
+    date?: string;
+    location?: string;
+    exif?: Exif;
+  }> = [];
+
   const metadataConfig = loadMetadataConfig();
 
   const years = fs
@@ -124,25 +145,38 @@ export function getPhotos(): PhotographItem[] {
     for (const file of files) {
       const id = file.replace(/\.[^/.]+$/, "");
       const imagePath = path.join(yearPath, file);
-      const exif = extractExif(imagePath);
+      const extracted = extractExif(imagePath);
       const override = metadataConfig[`${year}/${id}`] || {};
+
+      const exif = override.exif || extracted.exif;
+      const hasExif = Object.values(exif).some((v) => v !== undefined);
 
       photos.push({
         id,
         title: override.title || slugToTitle(file),
-        image: `/photographs/${year}/${file}`,
+        imageUrl: `/photographs/${year}/${file}`,
         year: Number(year),
-        date: override.date || exif.date,
-        location: override.location || exif.location,
-        camera: override.camera || exif.camera,
-        lens: override.lens || exif.lens,
-        focalLength: override.focalLength || exif.focalLength,
-        aperture: override.aperture || exif.aperture,
-        shutter: override.shutter || exif.shutter,
-        iso: override.iso || exif.iso,
+        date: override.date || extracted.date,
+        location: override.location || extracted.location,
+        exif: hasExif ? exif : undefined,
       });
     }
   }
 
   return photos;
 }
+
+function main() {
+  console.log("Generating photos data...");
+  const photos = generatePhotos();
+
+  const output = `import type { Item } from "../types";
+
+export const photos: Item[] = ${JSON.stringify(photos, null, 2)};
+`;
+
+  fs.writeFileSync(OUTPUT_FILE, output);
+  console.log(`Generated ${photos.length} photos → app/data/photos.ts`);
+}
+
+main();
