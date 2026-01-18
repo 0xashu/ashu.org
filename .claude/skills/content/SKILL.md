@@ -1,6 +1,11 @@
+---
+name: content
+description: Manage portfolio content - add books, films, photos, projects, and todos. Use when user wants to add, update, or modify content on the portfolio site.
+---
+
 # Content Management
 
-Guide for updating portfolio content. All data lives in `app/data/`.
+All data lives in `app/data/`. Images live in `public/`.
 
 ## Data Structure
 
