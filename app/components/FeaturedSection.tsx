@@ -109,7 +109,7 @@ export function FeaturedSection({
                 Films
               </h3>
               <Link
-                href="/movies"
+                href="/films"
                 className="text-xs text-zinc-400 hover:text-black transition-colors"
               >
                 View All
