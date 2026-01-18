@@ -1,5 +1,5 @@
 ---
-name: content
+name: cms
 description: Manage portfolio content - add books, films, photos, projects, and todos. Use when user wants to add, update, or modify content on the portfolio site.
 ---
 
