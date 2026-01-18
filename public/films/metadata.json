@@ -1,0 +1,74 @@
+{
+  "interstellar": {
+    "title": "Interstellar",
+    "director": "Christopher Nolan"
+  },
+  "kims-video": {
+    "title": "Kim's Video",
+    "director": "David Redmon, Ashley Sabin"
+  },
+  "dark-knight-rises": {
+    "title": "The Dark Knight Rises",
+    "director": "Christopher Nolan"
+  },
+  "merry-christmas-mr-lawrence": {
+    "title": "Merry Christmas Mr. Lawrence",
+    "director": "Nagisa Ōshima"
+  },
+  "kaili-blues": {
+    "title": "路边野餐",
+    "director": "Bi Gan"
+  },
+  "mad-phoenix": {
+    "title": "南海十三郎",
+    "director": "Clifton Ko"
+  },
+  "ghost-in-the-shell": {
+    "title": "Ghost in the Shell",
+    "director": "Mamoru Oshii"
+  },
+  "fire-of-love": {
+    "title": "Fire of Love",
+    "director": "Sara Dosa"
+  },
+  "before-sunrise": {
+    "title": "Before Sunrise",
+    "director": "Richard Linklater"
+  },
+  "akira": {
+    "title": "Akira",
+    "director": "Katsuhiro Otomo"
+  },
+  "monster": {
+    "title": "Monster",
+    "director": "Hirokazu Kore-eda"
+  },
+  "night-is-short": {
+    "title": "The Night Is Short, Walk on Girl",
+    "director": "Masaaki Yuasa"
+  },
+  "voices-of-a-distant-star": {
+    "title": "星之声",
+    "director": "Makoto Shinkai"
+  },
+  "once-upon-a-time-in-america": {
+    "title": "Once Upon a Time in America",
+    "director": "Sergio Leone"
+  },
+  "eat-drink-man-woman": {
+    "title": "饮食男女",
+    "director": "Ang Lee"
+  },
+  "princess-mononoke": {
+    "title": "幽灵公主",
+    "director": "Hayao Miyazaki"
+  },
+  "blue-gate-crossing": {
+    "title": "蓝色大门",
+    "director": "Yee Chih-yen"
+  },
+  "taxi-driver": {
+    "title": "Taxi Driver",
+    "director": "Martin Scorsese"
+  }
+}
