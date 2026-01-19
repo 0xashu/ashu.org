@@ -21,7 +21,7 @@ export default function Reading() {
           </Link>
         </header>
 
-        <p className="text-sm leading-relaxed mb-8 max-w-md">
+        <p className="text-xs md:text-sm leading-relaxed mb-8 max-w-md">
           Reading sharpens my craft and broadens my understanding of the
           world. Many of my best ideas come from applying tangential topics,
           such as typography or philosophy, to software design.

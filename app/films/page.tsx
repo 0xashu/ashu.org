@@ -23,7 +23,7 @@ export default function Films() {
           </Link>
         </header>
 
-        <p className="text-sm leading-relaxed mb-8 max-w-md">
+        <p className="text-xs md:text-sm leading-relaxed mb-8 max-w-md">
           Films that have shaped my perspective on storytelling, aesthetics,
           and the human experience.
         </p>
