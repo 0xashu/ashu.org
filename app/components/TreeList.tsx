@@ -44,7 +44,7 @@ export function TreeList({ items }: { items: TreeItem[] }) {
                     ↗
                   </sup>
                 </div>
-                <p className="text-zinc-600">{item.description}</p>
+                <p className="text-zinc-600 text-sm md:text-base">{item.description}</p>
               </Link>
 
               {item.todos && item.todos.length > 0 && (
@@ -52,7 +52,7 @@ export function TreeList({ items }: { items: TreeItem[] }) {
               )}
 
               {item.tags && item.tags.length > 0 && (
-                <p className="text-zinc-400 mt-2 space-x-2">
+                <p className="text-zinc-400 space-x-2">
                   {item.tags.map((tag) => (
                     <span key={tag} className="inline-block">
                       #{tag}

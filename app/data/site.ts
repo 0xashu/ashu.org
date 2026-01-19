@@ -35,7 +35,7 @@ export const projects: Project[] = [
     status: "Acquired",
     description: "All stories about smart money.",
     period: "2022 - 2024",
-    tags: ["Cofounder", "Smart Money", "Data Analytics", "SocialFi"],
+    tags: ["Cofounder", "Smart Money", "SocialFi"],
     category: "work",
   },
   {
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     status: "B Series",
     description: "An Ethereum wallet with over 20M users.",
     period: "2016 - 2022",
-    tags: ["Cofounder", "Multi-Chain Wallet", "DeFi", "Mobile"],
+    tags: ["Cofounder", "Multi-Chain Wallet", "DeFi"],
     category: "work",
   },
   {
@@ -63,14 +63,14 @@ export const projects: Project[] = [
   },
   {
     title: "Time4Value",
-    description: "A payment system via bonding curves and yield farming.",
+    description: "A payment system via bonding curves.",
     url: "https://v2ex.com/t/1061427",
     tags: ["Idea", "Payment", "Bonding Curve", "AAVE"],
     category: "idea",
   },
   {
     title: "CarbonVote",
-    description: "Vote for or against the Hard Fork with your Ether.",
+    description: "Vote for the hard fork with your Ether.",
     url: "https://vitalik.eth.limo/general/2017/12/17/voting.html",
     tags: ["Idea", "Ethereum", "Hard Fork", "Voting"],
     category: "idea",
