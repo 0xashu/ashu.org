@@ -48,18 +48,6 @@ export default function Home() {
                 })}
               </ul>
 
-              <ul className="flex flex-wrap gap-4 mt-8 md:hidden">
-                {nav.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="text-sm uppercase font-semibold text-zinc-400 hover:text-black transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </div>
           </header>
 
