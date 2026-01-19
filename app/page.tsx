@@ -28,7 +28,7 @@ export default function Home() {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-6">
                 {title}
               </h1>
-              <p className="text-base md:text-lg text-zinc-400 leading-relaxed">{intro}</p>
+              <p className="text-lg text-zinc-400 leading-relaxed">{intro}</p>
               <ul className="flex flex-wrap gap-4 md:gap-6 mt-6 font-mono text-sm md:text-base">
                 {social.map((link) => {
                   const href =

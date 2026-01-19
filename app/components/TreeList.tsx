@@ -13,7 +13,7 @@ type TreeItem = {
 
 export function TreeList({ items }: { items: TreeItem[] }) {
   return (
-    <ul className="text-sm md:text-base">
+    <ul className="text-sm">
       {items.map((item, i) => {
         const isLast = i === items.length - 1;
 
@@ -36,7 +36,7 @@ export function TreeList({ items }: { items: TreeItem[] }) {
                 className="h-6 group cursor-pointer"
               >
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-base md:text-lg">{item.title}</span>
+                  <span className="text-base">{item.title}</span>
                   <span className="text-zinc-400 text-xs font-mono leading-none">
                     {item.status}
                   </span>
@@ -44,7 +44,7 @@ export function TreeList({ items }: { items: TreeItem[] }) {
                     ↗
                   </sup>
                 </div>
-                <p className="text-zinc-600 text-sm md:text-base">{item.description}</p>
+                <p className="text-zinc-600">{item.description}</p>
               </Link>
 
               {item.todos && item.todos.length > 0 && (
