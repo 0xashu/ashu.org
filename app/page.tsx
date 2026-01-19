@@ -1,7 +1,9 @@
 import { site, projects, todos, books, films, photos, featured } from "./data";
 import Link from "next/link";
+import Image from "next/image";
 import { TreeList } from "./components/TreeList";
 import { FeaturedSection } from "./components/FeaturedSection";
+import { LoadingOrb } from "./components/LoadingOrb";
 import type { Item } from "./types";
 
 export default function Home() {
@@ -28,7 +30,10 @@ export default function Home() {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-6">
                 {title}
               </h1>
-              <p className="text-lg text-zinc-400 leading-relaxed">{intro}</p>
+              <p className="text-lg text-zinc-400 leading-relaxed">
+                <LoadingOrb style="claude" className="text-zinc-300 mr-2" />
+                {intro} 
+              </p>
               <ul className="flex flex-wrap gap-4 md:gap-6 mt-6 font-mono text-sm md:text-base">
                 {social.map((link) => {
                   const href =
@@ -107,7 +112,7 @@ export default function Home() {
         <nav className="hidden md:flex w-96 px-6 md:px-8 lg:px-12 pt-[calc(37.5vh-4rem)]">
           <ul className="flex flex-col gap-3 items-start sticky top-16 self-start">
             <li>
-              <div className="size-6 rounded-full bg-yellow-400" />
+              <Image src="/icon.svg" alt="" width={32} height={32} />
             </li>
             {nav.map((item) => (
               <li key={item.href}>
