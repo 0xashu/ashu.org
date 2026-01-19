@@ -5,8 +5,13 @@ import { usePathname } from "next/navigation";
 
 type TraceState = "none" | "light" | "medium" | "strong";
 
+interface TraceData {
+  state: TraceState;
+  views: number;
+}
+
 interface TraceMap {
-  [pathname: string]: TraceState;
+  [pathname: string]: TraceData;
 }
 
 const TRACE_STATES: TraceState[] = ["none", "light", "medium", "strong"];
@@ -30,14 +35,12 @@ const traceStyles: Record<TraceState, React.CSSProperties> = {
 export function AmbientTrace() {
   const pathname = usePathname();
   const [traces, setTraces] = useState<TraceMap>({});
-  const [mounted, setMounted] = useState(false);
   const [devMode, setDevMode] = useState(false);
   const [override, setOverride] = useState<TraceState | null>(null);
   const clickCount = useRef(0);
   const clickTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    setMounted(true);
     fetch("/api/traces")
       .then((res) => res.json())
       .then((data) => setTraces(data.traces || {}))
@@ -57,9 +60,8 @@ export function AmbientTrace() {
     }
   };
 
-  if (!mounted) return null;
-
-  const realState = traces[pathname] || "none";
+  const traceData = traces[pathname];
+  const realState = traceData?.state || "none";
   const state = override ?? realState;
   const style = traceStyles[state];
 
@@ -107,9 +109,9 @@ export function AmbientTrace() {
           }}
         >
           <div style={{ color: "#888", marginBottom: 8 }}>
-            Trace: {realState} {override && `→ ${override}`}
+            Current: {pathname}
           </div>
-          <div style={{ display: "flex", gap: 4 }}>
+          <div style={{ display: "flex", gap: 4, marginBottom: 12 }}>
             {TRACE_STATES.map((s) => (
               <button
                 key={s}
@@ -126,6 +128,32 @@ export function AmbientTrace() {
                 {s}
               </button>
             ))}
+          </div>
+          <div style={{ color: "#888", marginBottom: 4 }}>All Traces</div>
+          <div style={{ color: "#fff", fontSize: 11 }}>
+            {Object.keys(traces).length === 0 ? (
+              <div style={{ color: "#666" }}>No data (token not set?)</div>
+            ) : (
+              Object.entries(traces).map(([path, data]) => (
+                <div
+                  key={path}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: 12,
+                    opacity: path === pathname ? 1 : 0.5,
+                  }}
+                >
+                  <span>{path}</span>
+                  <span>
+                    <span style={{ color: "#888", marginRight: 8 }}>{data.views}</span>
+                    <span style={{ color: data.state === "none" ? "#666" : "#facc15" }}>
+                      {data.state}
+                    </span>
+                  </span>
+                </div>
+              ))
+            )}
           </div>
           <button
             onClick={() => setDevMode(false)}

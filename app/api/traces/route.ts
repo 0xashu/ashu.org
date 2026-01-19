@@ -7,8 +7,13 @@ const TRACKED_PAGES = ["/", "/films", "/reading", "/photographs"];
 
 type TraceState = "none" | "light" | "medium" | "strong";
 
+interface TraceData {
+  state: TraceState;
+  views: number;
+}
+
 interface TraceMap {
-  [pathname: string]: TraceState;
+  [pathname: string]: TraceData;
 }
 
 function viewsToState(views: number): TraceState {
@@ -60,8 +65,10 @@ export async function GET() {
 
     const traces: TraceMap = {};
     for (const { page, views } of results) {
-      traces[page] = viewsToState(views);
+      traces[page] = { state: viewsToState(views), views };
     }
+
+    console.log('traces', traces);
 
     return NextResponse.json(
       { traces },
