@@ -23,12 +23,13 @@ export default function Films() {
           </Link>
         </header>
 
+        <p className="text-sm leading-relaxed mb-8 max-w-md">
+          Films that have shaped my perspective on storytelling, aesthetics,
+          and the human experience.
+        </p>
+
         <div className="flex gap-12 lg:gap-16">
-          <div className="shrink-0 w-64 lg:w-80 sticky top-16 self-start max-h-[calc(100vh-8rem)] overflow-y-auto">
-            <p className="text-sm leading-relaxed mb-6">
-              Films that have shaped my perspective on storytelling, aesthetics,
-              and the human experience.
-            </p>
+          <div className="hidden md:block shrink-0 w-64 lg:w-80 sticky top-16 self-start max-h-[calc(100vh-8rem)] overflow-y-auto">
             <nav>
               <ul className="space-y-1 font-mono text-sm uppercase tracking-wide">
                 {films.map((film, index) => {

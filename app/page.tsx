@@ -29,7 +29,7 @@ export default function Home() {
                 {title}
               </h1>
               <p className="text-lg text-zinc-400 leading-relaxed">{intro}</p>
-              <ul className="flex gap-6 mt-6 font-mono">
+              <ul className="flex flex-wrap gap-4 md:gap-6 mt-6 font-mono text-sm md:text-base">
                 {social.map((link) => {
                   const href =
                     link.label === "Email" ? `mailto:${link.url}` : link.url;
@@ -46,6 +46,19 @@ export default function Home() {
                     </li>
                   );
                 })}
+              </ul>
+
+              <ul className="flex flex-wrap gap-4 mt-8 md:hidden">
+                {nav.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-sm uppercase font-semibold text-zinc-400 hover:text-black transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </header>
