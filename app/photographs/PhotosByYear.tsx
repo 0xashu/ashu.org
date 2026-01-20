@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { PinterestGrid } from "../components/PinterestGrid";
+import { useCallback, useMemo } from "react";
 import { PhotoLightbox } from "../components/PhotoLightbox";
+import { PinterestGrid } from "../components/PinterestGrid";
 import type { Item } from "../types";
 
 type PhotosByYearProps = {
@@ -15,36 +15,33 @@ export function PhotosByYear({ photos }: PhotosByYearProps) {
   const searchParams = useSearchParams();
 
   const photosByYear = useMemo(() => {
-    const grouped = photos.reduce((acc, photo) => {
-      const year = photo.year ?? 0;
-      if (!acc[year]) acc[year] = [];
-      acc[year].push(photo);
-      return acc;
-    }, {} as Record<number, Item[]>);
+    const grouped = photos.reduce(
+      (acc, photo) => {
+        const year = photo.year ?? 0;
+        if (!acc[year]) acc[year] = [];
+        acc[year].push(photo);
+        return acc;
+      },
+      {} as Record<number, Item[]>,
+    );
 
     return Object.entries(grouped)
       .sort(([a], [b]) => Number(b) - Number(a))
       .map(([year, items]) => ({ year: Number(year), photos: items }));
   }, [photos]);
 
-  const flatPhotos = useMemo(
-    () => photosByYear.flatMap((g) => g.photos),
-    [photosByYear]
-  );
+  const flatPhotos = useMemo(() => photosByYear.flatMap((g) => g.photos), [photosByYear]);
 
   const sectionOffsets = useMemo(() => {
     return photosByYear.reduce<number[]>((offsets, _, idx) => {
-      const prevOffset =
-        idx === 0 ? 0 : offsets[idx - 1] + photosByYear[idx - 1].photos.length;
+      const prevOffset = idx === 0 ? 0 : offsets[idx - 1] + photosByYear[idx - 1].photos.length;
       offsets.push(prevOffset);
       return offsets;
     }, []);
   }, [photosByYear]);
 
   const photoId = searchParams.get("photo");
-  const selectedIndex = photoId
-    ? flatPhotos.findIndex((p) => p.id === photoId)
-    : -1;
+  const selectedIndex = photoId ? flatPhotos.findIndex((p) => p.id === photoId) : -1;
   const isLightboxOpen = selectedIndex !== -1;
   const selectedPhoto = isLightboxOpen ? flatPhotos[selectedIndex] : null;
 
@@ -55,7 +52,7 @@ export function PhotosByYear({ photos }: PhotosByYearProps) {
         router.push(`/photographs?photo=${photo.id}`, { scroll: false });
       }
     },
-    [flatPhotos, router]
+    [flatPhotos, router],
   );
 
   const closePhoto = useCallback(() => {
@@ -79,11 +76,7 @@ export function PhotosByYear({ photos }: PhotosByYearProps) {
         </section>
       ))}
 
-      <PhotoLightbox
-        photo={selectedPhoto}
-        isOpen={isLightboxOpen}
-        onClose={closePhoto}
-      />
+      <PhotoLightbox photo={selectedPhoto} isOpen={isLightboxOpen} onClose={closePhoto} />
     </>
   );
 }

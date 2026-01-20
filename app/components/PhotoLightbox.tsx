@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import { useCallback, useEffect, useRef } from "react";
 import type { Item } from "../types";
 
 type PhotoLightboxProps = {
@@ -32,7 +32,7 @@ export function PhotoLightbox({ photo, isOpen, onClose }: PhotoLightboxProps) {
         onClose();
       }
     },
-    [onClose]
+    [onClose],
   );
 
   if (!photo) return null;
@@ -78,9 +78,7 @@ export function PhotoLightbox({ photo, isOpen, onClose }: PhotoLightboxProps) {
             </p>
           )}
           {exifParts.length > 0 && (
-            <p className="text-xs text-white/40 font-mono">
-              {exifParts.join(" · ")}
-            </p>
+            <p className="text-xs text-white/40 font-mono">{exifParts.join(" · ")}</p>
           )}
         </div>
       </div>

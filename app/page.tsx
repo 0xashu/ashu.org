@@ -1,9 +1,9 @@
-import { site, projects, todos, books, films, photos, featured } from "./data";
-import Link from "next/link";
 import Image from "next/image";
-import { TreeList } from "./components/TreeList";
+import Link from "next/link";
+import { Connect } from "./components/Connect";
 import { FeaturedSection } from "./components/FeaturedSection";
-import { LoadingOrb } from "./components/LoadingOrb";
+import { TreeList } from "./components/TreeList";
+import { books, featured, films, photos, projects, site, todos } from "./data";
 import type { Item } from "./types";
 
 export default function Home() {
@@ -30,14 +30,13 @@ export default function Home() {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-6">
                 {title}
               </h1>
-              <p className="text-lg text-zinc-400 leading-relaxed">
-                <LoadingOrb style="claude" className="text-zinc-300 mr-2" />
-                {intro} 
-              </p>
+              <p className="text-lg text-zinc-400 leading-relaxed">{intro}</p>
+              <div className="my-2 flex items-center gap-2">
+                <Connect />
+              </div>
               <ul className="flex flex-wrap gap-4 md:gap-6 mt-6 font-mono text-sm md:text-base">
                 {social.map((link) => {
-                  const href =
-                    link.label === "Email" ? `mailto:${link.url}` : link.url;
+                  const href = link.label === "Email" ? `mailto:${link.url}` : link.url;
                   return (
                     <li key={link.label}>
                       <Link
@@ -52,15 +51,12 @@ export default function Home() {
                   );
                 })}
               </ul>
-
             </div>
           </header>
 
           <main>
             <section id="working" className="mb-20">
-              <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">
-                Working
-              </h2>
+              <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">Working</h2>
               <TreeList
                 items={projects
                   .filter((p) => p.category === "work")
@@ -76,9 +72,7 @@ export default function Home() {
             </section>
 
             <section id="ideas" className="mb-20">
-              <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">
-                Ideas
-              </h2>
+              <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">Ideas</h2>
               <TreeList
                 items={[
                   ...projects
@@ -101,11 +95,7 @@ export default function Home() {
               />
             </section>
 
-            <FeaturedSection
-              books={featuredBooks}
-              films={featuredFilms}
-              photos={featuredPhotos}
-            />
+            <FeaturedSection books={featuredBooks} films={featuredFilms} photos={featuredPhotos} />
           </main>
         </div>
 

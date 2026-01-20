@@ -32,7 +32,7 @@ function FeaturedItem({
   return (
     <div
       className={cn(
-        "relative aspect-2/3 rounded-xs overflow-hidden transition-[filter,box-shadow] duration-500 ease-out cursor-pointer shadow-sm hover:shadow-xl border-6"
+        "relative aspect-2/3 rounded-xs overflow-hidden transition-[filter,box-shadow] duration-500 ease-out cursor-pointer shadow-sm hover:shadow-xl border-6",
       )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -47,38 +47,28 @@ function FeaturedItem({
       <div
         className={cn(
           "absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-4 transition-opacity duration-300",
-          isHovered ? "opacity-100" : "opacity-0"
+          isHovered ? "opacity-100" : "opacity-0",
         )}
       >
-        <h3 className="text-white text-sm font-medium leading-tight">
-          {title}
-        </h3>
+        <h3 className="text-white text-sm font-medium leading-tight">{title}</h3>
         <p className="text-white/70 text-xs mt-1">{subtitle}</p>
       </div>
     </div>
   );
 }
 
-export function FeaturedSection({
-  books,
-  films,
-  photos,
-}: FeaturedSectionProps) {
+export function FeaturedSection({ books, films, photos }: FeaturedSectionProps) {
   const [hoveredIndex, setHoveredIndex] = useState<string | null>(null);
 
   return (
     <section id="featured" className="mb-20">
-      <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-6">
-        Featured
-      </h2>
+      <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-6">Featured</h2>
 
       <div className="space-y-10">
         {books.length > 0 && (
           <div>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xs text-zinc-400 uppercase tracking-wide">
-                Reading
-              </h3>
+              <h3 className="text-xs text-zinc-400 uppercase tracking-wide">Reading</h3>
               <Link
                 href="/reading"
                 className="text-xs text-zinc-400 hover:text-black transition-colors"
@@ -105,9 +95,7 @@ export function FeaturedSection({
         {films.length > 0 && (
           <div>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xs text-zinc-400 uppercase tracking-wide">
-                Films
-              </h3>
+              <h3 className="text-xs text-zinc-400 uppercase tracking-wide">Films</h3>
               <Link
                 href="/films"
                 className="text-xs text-zinc-400 hover:text-black transition-colors"
@@ -134,9 +122,7 @@ export function FeaturedSection({
         {photos.length > 0 && (
           <div>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xs text-zinc-400 uppercase tracking-wide">
-                Photos
-              </h3>
+              <h3 className="text-xs text-zinc-400 uppercase tracking-wide">Photos</h3>
               <Link
                 href="/photographs"
                 className="text-xs text-zinc-400 hover:text-black transition-colors"

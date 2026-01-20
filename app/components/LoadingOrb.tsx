@@ -58,11 +58,7 @@ interface LoadingProps {
   className?: string;
 }
 
-export function Loading({
-  text = "Loading",
-  style = "claude",
-  className = "",
-}: LoadingProps) {
+export function Loading({ text = "Loading", style = "claude", className = "" }: LoadingProps) {
   return (
     <span className={`inline-flex items-center gap-2 ${className}`}>
       <LoadingOrb style={style} />

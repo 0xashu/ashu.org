@@ -65,14 +65,14 @@ export const projects: Project[] = [
     title: "Time4Value",
     description: "A payment system via bonding curves.",
     url: "https://v2ex.com/t/1061427",
-    tags: ["Idea", "Payment", "Bonding Curve", "AAVE"],
+    tags: ["idea", "Payment", "Bonding Curve", "AAVE"],
     category: "idea",
   },
   {
     title: "CarbonVote",
     description: "Vote for the hard fork with your Ether.",
     url: "https://vitalik.eth.limo/general/2017/12/17/voting.html",
-    tags: ["Idea", "Ethereum", "Hard Fork", "Voting"],
+    tags: ["idea", "Ethereum", "Hard Fork", "Voting"],
     category: "idea",
   },
   {

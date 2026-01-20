@@ -1,7 +1,7 @@
-import { Suspense } from "react";
 import Link from "next/link";
-import { PhotosByYear } from "./PhotosByYear";
+import { Suspense } from "react";
 import { photos } from "../data";
+import { PhotosByYear } from "./PhotosByYear";
 
 export default function Photographs() {
   return (

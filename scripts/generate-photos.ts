@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import ExifReader from "exifreader";
 
 const PHOTOS_DIR = path.join(process.cwd(), "public/photographs");
@@ -75,9 +75,7 @@ function extractExif(imagePath: string): {
     const model = tags.Model?.description;
     let camera: string | undefined;
     if (make && model) {
-      camera = model.startsWith(make)
-        ? model
-        : `${make} ${model}`.replace(/\s+/g, " ").trim();
+      camera = model.startsWith(make) ? model : `${make} ${model}`.replace(/\s+/g, " ").trim();
     } else {
       camera = model;
     }
@@ -99,9 +97,7 @@ function extractExif(imagePath: string): {
       exif: {
         camera,
         lens: tags.LensModel?.description,
-        focalLength: focalLength
-          ? `${Math.round(Number(focalLength))}mm`
-          : undefined,
+        focalLength: focalLength ? `${Math.round(Number(focalLength))}mm` : undefined,
         aperture: fNumber ? `f/${fNumber}` : undefined,
         shutter: exposureTime ? formatShutter(Number(exposureTime)) : undefined,
         iso: iso ? String(iso) : undefined,

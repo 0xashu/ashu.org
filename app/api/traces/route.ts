@@ -60,7 +60,7 @@ export async function GET() {
       TRACKED_PAGES.map(async (page) => {
         const views = await getPageViews(page);
         return { page, views };
-      })
+      }),
     );
 
     const traces: TraceMap = {};
@@ -68,7 +68,7 @@ export async function GET() {
       traces[page] = { state: viewsToState(views), views };
     }
 
-    console.log('traces', traces);
+    console.log("traces", traces);
 
     return NextResponse.json(
       { traces },
@@ -76,7 +76,7 @@ export async function GET() {
         headers: {
           "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=7200",
         },
-      }
+      },
     );
   } catch (error) {
     console.error("Failed to fetch traces:", error);

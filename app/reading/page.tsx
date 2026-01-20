@@ -1,9 +1,9 @@
 "use client";
 
-import { books } from "../data";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
+import { books } from "../data";
 import { cn } from "../lib/utils";
 
 export default function Reading() {
@@ -22,9 +22,9 @@ export default function Reading() {
         </header>
 
         <p className="text-xs md:text-sm leading-relaxed mb-8 max-w-md">
-          Reading sharpens my craft and broadens my understanding of the
-          world. Many of my best ideas come from applying tangential topics,
-          such as typography or philosophy, to software design.
+          Reading sharpens my craft and broadens my understanding of the world. Many of my best
+          ideas come from applying tangential topics, such as typography or philosophy, to software
+          design.
         </p>
 
         <div className="flex gap-12 lg:gap-16">
@@ -44,7 +44,7 @@ export default function Reading() {
                             ? isHovered
                               ? "text-zinc-900"
                               : "text-zinc-300"
-                            : "text-zinc-500"
+                            : "text-zinc-500",
                         )}
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
@@ -73,7 +73,7 @@ export default function Reading() {
                         ? isHovered
                           ? "grayscale-0 brightness-100"
                           : "grayscale brightness-75"
-                        : "grayscale-0 brightness-100"
+                        : "grayscale-0 brightness-100",
                     )}
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}

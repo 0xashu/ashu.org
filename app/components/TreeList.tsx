@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TodoList, type TodoItem } from "./TodoList";
+import { type TodoItem, TodoList } from "./TodoList";
 
 type TreeItem = {
   title: React.ReactNode;
@@ -20,13 +20,9 @@ export function TreeList({ items }: { items: TreeItem[] }) {
         return (
           <li key={i} className="flex">
             <div className="w-4 shrink-0 relative mr-1">
-              {!isLast && (
-                <div className="absolute left-0 top-0 -bottom-4 w-px bg-zinc-300" />
-              )}
+              {!isLast && <div className="absolute left-0 top-0 -bottom-4 w-px bg-zinc-300" />}
               <div className="absolute left-0 top-3 w-3 h-px bg-zinc-300" />
-              {isLast && (
-                <div className="absolute left-0 top-0 h-3 w-px bg-zinc-300" />
-              )}
+              {isLast && <div className="absolute left-0 top-0 h-3 w-px bg-zinc-300" />}
             </div>
             <div className="flex-1 pb-8">
               <Link
@@ -47,9 +43,7 @@ export function TreeList({ items }: { items: TreeItem[] }) {
                 <p className="text-zinc-600 text-sm md:text-base">{item.description}</p>
               </Link>
 
-              {item.todos && item.todos.length > 0 && (
-                <TodoList items={item.todos} />
-              )}
+              {item.todos && item.todos.length > 0 && <TodoList items={item.todos} />}
 
               {item.tags && item.tags.length > 0 && (
                 <p className="text-zinc-400 space-x-2">
@@ -60,9 +54,7 @@ export function TreeList({ items }: { items: TreeItem[] }) {
                   ))}
                 </p>
               )}
-              {item.period && (
-                <p className="text-zinc-400 mt-2">{item.period}</p>
-              )}
+              {item.period && <p className="text-zinc-400 mt-2">{item.period}</p>}
             </div>
           </li>
         );

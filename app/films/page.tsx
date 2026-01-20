@@ -1,10 +1,10 @@
 "use client";
 
-import { films } from "../data";
 import Link from "next/link";
 import { useState } from "react";
-import { cn } from "../lib/utils";
 import { PinterestGrid } from "../components/PinterestGrid";
+import { films } from "../data";
+import { cn } from "../lib/utils";
 
 export default function Films() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -24,8 +24,8 @@ export default function Films() {
         </header>
 
         <p className="text-xs md:text-sm leading-relaxed mb-8 max-w-md">
-          Films that have shaped my perspective on storytelling, aesthetics,
-          and the human experience.
+          Films that have shaped my perspective on storytelling, aesthetics, and the human
+          experience.
         </p>
 
         <div className="flex gap-12 lg:gap-16">
@@ -44,7 +44,7 @@ export default function Films() {
                             ? isHovered
                               ? "text-zinc-900"
                               : "text-zinc-300"
-                            : "text-zinc-500"
+                            : "text-zinc-500",
                         )}
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}

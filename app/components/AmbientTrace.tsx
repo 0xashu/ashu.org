@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 type TraceState = "none" | "light" | "medium" | "strong";
 
@@ -108,9 +108,7 @@ export function AmbientTrace() {
             fontSize: 12,
           }}
         >
-          <div style={{ color: "#888", marginBottom: 8 }}>
-            Current: {pathname}
-          </div>
+          <div style={{ color: "#888", marginBottom: 8 }}>Current: {pathname}</div>
           <div style={{ display: "flex", gap: 4, marginBottom: 12 }}>
             {TRACE_STATES.map((s) => (
               <button

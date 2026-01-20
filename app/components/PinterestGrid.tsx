@@ -34,17 +34,11 @@ export function PinterestGrid({
   onHoverChange,
   onItemClick,
 }: PinterestGridProps) {
-  const [internalHoveredIndex, setInternalHoveredIndex] = useState<
-    number | null
-  >(null);
+  const [internalHoveredIndex, setInternalHoveredIndex] = useState<number | null>(null);
 
   const isControlled = controlledHoveredIndex !== undefined;
-  const hoveredIndex = isControlled
-    ? controlledHoveredIndex
-    : internalHoveredIndex;
-  const setHoveredIndex = isControlled
-    ? onHoverChange
-    : setInternalHoveredIndex;
+  const hoveredIndex = isControlled ? controlledHoveredIndex : internalHoveredIndex;
+  const setHoveredIndex = isControlled ? onHoverChange : setInternalHoveredIndex;
 
   const hasHover = hoveredIndex !== null;
 
@@ -62,7 +56,7 @@ export function PinterestGrid({
                   ? isHovered
                     ? "grayscale-0 brightness-100"
                     : "grayscale brightness-75"
-                  : "grayscale-0 brightness-100"
+                  : "grayscale-0 brightness-100",
               )}
               onMouseEnter={() => setHoveredIndex?.(index)}
               onMouseLeave={() => setHoveredIndex?.(null)}
@@ -91,17 +85,11 @@ export function PinterestGrid({
                 <div
                   className={cn(
                     "absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-4 transition-opacity duration-300",
-                    isHovered ? "opacity-100" : "opacity-0"
+                    isHovered ? "opacity-100" : "opacity-0",
                   )}
                 >
-                  <h3 className="text-white text-sm font-medium leading-tight">
-                    {item.title}
-                  </h3>
-                  {item.subtitle && (
-                    <p className="text-white/70 text-xs mt-1">
-                      {item.subtitle}
-                    </p>
-                  )}
+                  <h3 className="text-white text-sm font-medium leading-tight">{item.title}</h3>
+                  {item.subtitle && <p className="text-white/70 text-xs mt-1">{item.subtitle}</p>}
                 </div>
               )}
             </div>
