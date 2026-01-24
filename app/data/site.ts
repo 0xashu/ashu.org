@@ -4,6 +4,7 @@ export const site = {
   name: "Ashu",
   title: "Hello, I'm Ashu",
   intro: "A product manager, designer, and coder sometimes.",
+  birthday: "2025-09-11T00:00:00-04:00",
 
   nav: [
     { label: "Working", href: "#working" },
@@ -26,7 +27,7 @@ export const projects: Project[] = [
     url: "https://nonce.app",
     description: "A Bitcoin mining tool with 5% global hashrate.",
     period: "2025 - Now",
-    tags: ["Cofounder", "Mining", "AI First", "SaaS"],
+    tags: ["Mining", "AI First", "SaaS"],
     category: "work",
   },
   {
@@ -35,7 +36,7 @@ export const projects: Project[] = [
     status: "Acquired",
     description: "All stories about smart money.",
     period: "2022 - 2024",
-    tags: ["Cofounder", "Smart Money", "SocialFi"],
+    tags: ["Smart Money", "SocialFi"],
     category: "work",
   },
   {
@@ -44,7 +45,7 @@ export const projects: Project[] = [
     status: "B Series",
     description: "An Ethereum wallet with over 20M users.",
     period: "2016 - 2022",
-    tags: ["Cofounder", "Multi-Chain Wallet", "DeFi"],
+    tags: ["Multi-Chain Wallet", "DeFi"],
     category: "work",
   },
   {
