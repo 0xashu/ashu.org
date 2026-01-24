@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 
 export type OrbStyle = "claude" | "diamond" | "cross" | "star" | "snowflake";
 
-export const ORB_STYLES: OrbStyle[] = ["claude", "diamond", "cross", "star", "snowflake"];
+export const ORB_STYLES: OrbStyle[] = [
+  "claude",
+  "diamond",
+  "cross",
+  "star",
+  "snowflake",
+];
 
 const ORB_CHARS: Record<OrbStyle, string[]> = {
   claude: ["✽", "✻", "✶", "✢", "·"],
@@ -23,7 +29,7 @@ interface LoadingOrbProps {
 
 export function LoadingOrb({
   style = "claude",
-  interval = 300,
+  interval = 200,
   className = "",
   color,
 }: LoadingOrbProps) {
@@ -58,7 +64,11 @@ interface LoadingProps {
   className?: string;
 }
 
-export function Loading({ text = "Loading", style = "claude", className = "" }: LoadingProps) {
+export function Loading({
+  text = "Loading",
+  style = "claude",
+  className = "",
+}: LoadingProps) {
   return (
     <span className={`inline-flex items-center gap-2 ${className}`}>
       <LoadingOrb style={style} />
