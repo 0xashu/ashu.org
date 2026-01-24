@@ -36,7 +36,8 @@ export default function Home() {
               </div>
               <ul className="flex flex-wrap gap-4 md:gap-6 mt-6 font-mono text-sm md:text-base">
                 {social.map((link) => {
-                  const href = link.label === "Email" ? `mailto:${link.url}` : link.url;
+                  const href =
+                    link.label === "Email" ? `mailto:${link.url}` : link.url;
                   return (
                     <li key={link.label}>
                       <Link
@@ -54,9 +55,11 @@ export default function Home() {
             </div>
           </header>
 
-          <main>
+          <main className="max-w-3xl md:max-w-4xl lg:max-w-5xl">
             <section id="working" className="mb-20">
-              <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">Working</h2>
+              <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">
+                Working
+              </h2>
               <TreeList
                 items={projects
                   .filter((p) => p.category === "work")
@@ -72,11 +75,16 @@ export default function Home() {
             </section>
 
             <section id="ideas" className="mb-20">
-              <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">Ideas</h2>
+              <h2 className="text-sm text-zinc-400 uppercase tracking-wide mb-4">
+                Ideas
+              </h2>
               <TreeList
                 items={[
                   ...projects
-                    .filter((p) => p.category === "hackathon" || p.category === "idea")
+                    .filter(
+                      (p) =>
+                        p.category === "hackathon" || p.category === "idea",
+                    )
                     .map((p) => ({
                       title: p.title,
                       description: p.description,
@@ -95,11 +103,15 @@ export default function Home() {
               />
             </section>
 
-            <FeaturedSection books={featuredBooks} films={featuredFilms} photos={featuredPhotos} />
+            <FeaturedSection
+              books={featuredBooks}
+              films={featuredFilms}
+              photos={featuredPhotos}
+            />
           </main>
         </div>
 
-        <nav className="hidden md:flex w-96 px-6 md:px-8 lg:px-12 pt-[calc(37.5vh-4rem)]">
+        <nav className="hidden md:flex w-[clamp(12rem,22vw,18rem)] pl-6 lg:pl-8 pt-[calc(37.5vh-4rem)]">
           <ul className="flex flex-col gap-3 items-start sticky top-16 self-start">
             <li>
               <Image src="/icon.svg" alt="" width={32} height={32} />
