@@ -61,8 +61,8 @@ export default function WaicPage() {
   };
 
   return (
-    <div className="min-h-dvh pb-[calc(5.75rem+env(safe-area-inset-bottom))] sm:pb-[calc(5.5rem+env(safe-area-inset-bottom))]">
-      <div className="mx-auto max-w-2xl px-5 pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-8 sm:pt-10 md:px-12">
+    <div className="min-h-dvh pb-[calc(8rem+env(safe-area-inset-bottom,0px))] sm:pb-[calc(7.5rem+env(safe-area-inset-bottom,0px))]">
+      <div className="mx-auto max-w-2xl px-5 pt-[calc(1.25rem+env(safe-area-inset-top,0px))] sm:px-8 sm:pt-[calc(2.5rem+env(safe-area-inset-top,0px))] md:px-12">
         <Link
           href="/"
           className="mb-6 inline-block font-mono text-[13px] text-zinc-400 transition-colors hover:text-black sm:mb-8"
@@ -144,7 +144,7 @@ export default function WaicPage() {
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-[0.875rem] leading-relaxed text-zinc-400">
+            <p className="mt-4 mb-6 text-[0.875rem] leading-relaxed text-zinc-400 sm:mb-8">
               👋 欢迎联系，如果你对算电协同业务感兴趣。
             </p>
           </div>
@@ -152,7 +152,7 @@ export default function WaicPage() {
       </section>
 
       <div className="fixed inset-x-0 bottom-0 z-20 border-t border-zinc-200/80 bg-[#faf9f6]/95 backdrop-blur-md supports-[backdrop-filter]:bg-[#faf9f6]/85">
-        <div className="mx-auto flex max-w-2xl gap-2 px-5 pb-[max(0.625rem,env(safe-area-inset-bottom))] pt-2.5 sm:px-8 sm:pt-3 md:px-12">
+        <div className="mx-auto flex max-w-2xl gap-2 px-5 pb-[calc(0.625rem+env(safe-area-inset-bottom,0px))] pt-2.5 sm:px-8 sm:pt-3 md:px-12">
           <div className="min-w-0 flex-1">
             <Drawer.Root
               open={open}
@@ -173,7 +173,7 @@ export default function WaicPage() {
                 <Drawer.Overlay className="fixed inset-0 z-40 bg-black/40" />
                 <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 mx-auto flex w-full max-w-lg flex-col rounded-t-2xl bg-[#faf9f6] outline-none sm:max-w-xl">
                   <div className="mx-auto mt-3 h-1 w-10 shrink-0 rounded-full bg-zinc-300" />
-                  <div className="px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-5 sm:px-8">
+                  <div className="px-5 pb-[calc(1.25rem+env(safe-area-inset-bottom,0px))] pt-5 sm:px-8">
                     <Drawer.Title className="text-lg font-semibold tracking-tight">
                       Coffee Chat
                     </Drawer.Title>
