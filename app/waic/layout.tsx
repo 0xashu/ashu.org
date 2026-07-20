@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
-const TITLE = "Ashu @ SHANGHAI WAIC｜ AIDC 与算电协同";
-const DESCRIPTION =
-  "Nonce 管理全球 5% Bitcoin 算力，主要服务北美上市矿企。欢迎 Coffee Chat 或线上闲聊。";
+const TITLE = "Ashu / SHANGHAI WAIC";
+const DESCRIPTION = "熟悉算力与能源管理，寻找 AIDC 机会，欢迎认识新朋友";
 const URL = "https://ashu.org/waic";
 
 export const metadata: Metadata = {

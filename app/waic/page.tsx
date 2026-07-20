@@ -17,8 +17,8 @@ const LOOKING_FOR = [
 const ALSO_OPEN_TO = [
   "Web3 产品与创业经验",
   "AI 时代，我们需要什么样的产品？",
-  "矿场运维经验如何迁移到 AIDC？",
   "加密货币钱包的核心竞争力是什么？",
+  "分布式矿场运维经验如何迁移到 AIDC？",
 ];
 
 function ExternalIcon() {
@@ -119,7 +119,9 @@ export default function WaicPage() {
 
         <div className="grid max-w-lg gap-7 sm:gap-10">
           <div>
-            <p className="mb-2.5 font-mono text-[11px] text-zinc-400">01 / 在找</p>
+            <p className="mb-2.5 font-mono text-[11px] text-zinc-400">
+              01 / 在找
+            </p>
             <ul className="divide-y divide-zinc-100">
               {LOOKING_FOR.map((item) => (
                 <li
@@ -133,7 +135,9 @@ export default function WaicPage() {
           </div>
 
           <div>
-            <p className="mb-2.5 font-mono text-[11px] text-zinc-400">02 / 也聊</p>
+            <p className="mb-2.5 font-mono text-[11px] text-zinc-400">
+              02 / 也聊
+            </p>
             <ul className="divide-y divide-zinc-100">
               {ALSO_OPEN_TO.map((item) => (
                 <li
@@ -178,7 +182,8 @@ export default function WaicPage() {
                       Coffee Chat
                     </Drawer.Title>
                     <Drawer.Description className="mt-2 text-[0.9375rem] leading-relaxed text-zinc-500">
-                      加好友可备注来自 WAIC，我们可以在上海 / 杭州约 Coffee Chat。
+                      加好友可备注来自 WAIC，我们可以在上海 / 杭州约 Coffee
+                      Chat。
                     </Drawer.Description>
 
                     <div className="mt-5 flex flex-col gap-3 rounded-lg border border-zinc-200 bg-white p-4 sm:flex-row sm:items-center">
