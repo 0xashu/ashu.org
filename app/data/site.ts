@@ -16,7 +16,7 @@ export const site = {
 
   social: [
     { label: "Email", url: "hi@ashu.org" },
-    { label: "Twitter", url: "https://x.com/0xashu" },
+    { label: "Twitter", url: "https://x.com/ashu_mest" },
     { label: "GitHub", url: "https://github.com/0xashu" },
   ],
 };
